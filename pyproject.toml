@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "py-acr122u"
+version = "0.1.0"
+description = "A library to use the acr122u at its full potential."
+authors = ["Parent, Brice <briceparent.it@gmail.com>"]
+license = "MIT"
+homepage = "https://github.com/Flowtter/py-acr122u"
+repository = "https://github.com/Flowtter/py-acr122u"
+documentation = "https://github.com/Flowtter/py-acr122u"
+packages = [
+    { include = "py_acr122u", from = "src" },
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyscard = "^2.0.3"
+
+[tool.poetry.dev-dependencies]
+pre-commit = "^2.20.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 119
+target-version = ['py310']
+include = '\.pyi?$'

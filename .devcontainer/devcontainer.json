@@ -1,0 +1,11 @@
+{
+  "context": "..",
+  "dockerFile": "Containerfile",
+  "extensions": [
+    "ms-azuretools.vscode-docker",
+    "bungcip.better-toml",
+    "ms-python.python"
+  ],
+  "name": "py-acr122u",
+  "onCreateCommand": ["pre-commit", "install", "--install-hooks"]
+}

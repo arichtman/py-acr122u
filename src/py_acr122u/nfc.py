@@ -1,14 +1,17 @@
 import smartcard.System
-from smartcard.util import toHexString
+from py_acr122u import error
+from py_acr122u import option
+from py_acr122u import utils
 from smartcard.ATR import ATR
-
-from src import utils, option, error
+from smartcard.util import toHexString
 
 
 class Reader:
     def __init__(self):
-        """create an ACR122U object
-        doc available here: http://downloads.acs.com.hk/drivers/en/API-ACR122U-2.02.pdf"""
+        """
+        Create an ACR122U object
+        doc available here: http://downloads.acs.com.hk/drivers/en/API-ACR122U-2.02.pdf
+        """
         self.reader_name, self.connection = self.instantiate_reader()
 
     @staticmethod
@@ -23,10 +26,11 @@ class Reader:
 
         try:
             c.connect()
-        except:
+        except:  # noqa: E722
             raise error.NoCommunication(
                 "The reader has been deleted and no communication is now possible. Smartcard error code : 0x7FEFFF97"
-                "\nHint: try to connect a card to the reader")
+                "\nHint: try to connect a card to the reader"
+            )
 
         return reader, c
 
@@ -52,7 +56,9 @@ class Reader:
         payload = option.options.get(mode)
 
         if not payload:
-            raise error.OptionOutOfRange("Option do not exist\nHint: try to call help(nfc.Reader().command) to see all options")
+            raise error.OptionOutOfRange(
+                "Option do not exist\nHint: try to call help(nfc.Reader().command) to see all options"
+            )
 
         payload = utils.replace_arguments(payload, arguments)
         result = self.connection.transmit(payload)
@@ -198,15 +204,18 @@ class Reader:
         print(historical_byte[-17:-12])
         card_name = historical_byte[-17:-12]
         name = option.cards.get(card_name, "")
-        print(f"Card Name: {name}\n\tT0 {atr.isT0Supported()}\n\tT1 {atr.isT1Supported()}\n\tT1 {atr.isT15Supported()}")
+        print(
+            f"Card Name: {name}\n\tT0 {atr.isT0Supported()}\n\tT1 {atr.isT1Supported()}\n\tT1 {atr.isT15Supported()}"
+        )
 
     @staticmethod
     def print_data(data):
-        print(f"data:\n\t{data}"
-              f"\n\t{utils.int_list_to_hexadecimal_list(data)}"
-              f"\n\t{utils.int_list_to_string_list(data)}")
+        print(
+            f"data:\n\t{data}"
+            f"\n\t{utils.int_list_to_hexadecimal_list(data)}"
+            f"\n\t{utils.int_list_to_string_list(data)}"
+        )
 
     @staticmethod
     def print_sw1_sw2(sw1, sw2):
-            print(f"sw1 : {sw1} {hex(sw1)}\n"
-                  f"sw2 : {sw2} {hex(sw2)}")
+        print(f"sw1 : {sw1} {hex(sw1)}\n" f"sw2 : {sw2} {hex(sw2)}")

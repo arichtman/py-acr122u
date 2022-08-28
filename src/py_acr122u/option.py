@@ -24,10 +24,7 @@ alias = {
     "b": "buzzer_sound_mute",
     "st": "set_timeout",
 }
-answers = {
-    "success": [0x90, 0x0],
-    "fail": [0x63, 0x0]
-}
+answers = {"success": [0x90, 0x0], "fail": [0x63, 0x0]}
 cards = {
     "00 01": "MIFARE Classic 1K",
     "00 02": "MIFARE Classic 4K",
@@ -35,5 +32,5 @@ cards = {
     "00 26": "MIFARE Mini",
     "F0 04": "Topaz and Jewel",
     "F0 11": "FeliCa 212K",
-    "F0 12": "FeliCa 424K"
+    "F0 12": "FeliCa 424K",
 }

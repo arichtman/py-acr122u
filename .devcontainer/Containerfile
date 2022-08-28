@@ -1,0 +1,11 @@
+
+FROM docker.io/library/python:3.10-bullseye
+
+RUN apt-get update && apt-get install --yes libpcsclite-dev swig
+
+WORKDIR /workspaces/py-acr122u
+COPY . ./
+
+RUN pip install poetry \
+    && poetry config virtualenvs.create false \
+    && poetry install --no-interaction

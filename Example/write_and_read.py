@@ -1,4 +1,4 @@
-from src import nfc
+from py_acr122u import nfc
 
 reader = nfc.Reader()
 
@@ -28,6 +28,7 @@ def read(r, position, number):
 
 def read_16(r, position, number):
     return r.read_binary_blocks(position, number)
+
 
 write(reader, 0x01, 0x20, [0x00 for i in range(16)])
 print(read(reader, 0x01, 0x20))
