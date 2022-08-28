@@ -7,5 +7,14 @@
     "ms-python.python"
   ],
   "name": "py-acr122u",
-  "onCreateCommand": ["pre-commit", "install", "--install-hooks"]
+  "onCreateCommand": ["poetry", "install", "--no-interaction"],
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "poetry",
+    "terminal.integrated.profiles.linux": {
+      "poetry": {
+        "path": "/usr/local/bin/poetry",
+        "args": ["shell"]
+      }
+    }
+  }
 }
